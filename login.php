@@ -14,6 +14,8 @@ if (isset($_POST['email']) && empty($_POST['email']) == false){
         $dado = $sql->fetch();
         
         $_SESSION['id'] = $dado['id'];
+        
+        header("Location: index.php");
     }
 
 }
