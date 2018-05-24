@@ -1,11 +1,21 @@
 <?php 
 session_start();
+require 'config.php';
+
 if (isset($_POST['email']) && empty($_POST['email']) == false){
     
     $email = addslashes($_POST['email']);
-    $senha = addslashes($_POST['senha']);
+    $senha = md5(addslashes($_POST['senha']));
     
+    $sql = $db->query("SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
     
+    if($sql->rowCount() > 0){
+        
+        $dado = $sql->fetch();
+        
+        print_r($dado);
+    }
+
 }
 
 ?>
